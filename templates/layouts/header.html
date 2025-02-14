@@ -1,0 +1,58 @@
+{% load static %}
+
+<!-- Header Section Begin -->
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2">
+        <div class="header__logo">
+          <a href="{% url "home" %}">
+            <img src="{% static "img/logo.png" %}" alt="" />
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="header__nav">
+          <nav class="header__menu mobile-menu">
+            <ul>
+              <li class="active"><a href="{% url "home" %}">Homepage</a></li>
+              <li>
+                <a href="{% url "categories" %}"
+                  >Categories <span class="arrow_carrot-down"></span
+                ></a>
+                <ul class="dropdown">
+                  <li><a href="{% url "categories" %}">Categories</a></li>
+                  <li><a href="{% url "anime_details" %}">Anime Details</a></li>
+                  <li>
+                    <a href="{% url "anime_watching" %}">Anime Watching</a>
+                  </li>
+                  <li><a href="{% url "blog-details" %}">Blog Details</a></li>
+                  <li><a href="{% url "signup" %}">Sign Up</a></li>
+                  <li><a href="{% url "login" %}">Login</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url "blog" %}">Our Blog</a></li>
+              <li><a href="#">Contacts</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="header__right">
+          <div class="search-switch">
+            <span class="icon_search"></span>
+            <form class="search-model-form">
+              <input type="text" id="search-input" placeholder="Search here..." />
+            </form>
+          </div>
+          <a href="{% url "home" %}"><span class="icon_profile"></span></a>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu-wrap"></div>
+  </div>
+</header>
+<!-- Header End -->
+
+
+<link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css">
