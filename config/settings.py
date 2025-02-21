@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'anime_site',
-        'USER': 'postgres',
-        'PASSWORD': '1111',
-        'HOST': 'localhost',
+        'NAME': 'anime_mail_site',
+        'USER': 'anime_mail_site_user',
+        'PASSWORD': 'iMZ6J9AFgR4KctsOIZ8sQ5Wo9esLwUhZ',
+        'HOST': 'dpg-cus4elhopnds7396cmog-a',
         'PORT': '5432'
     }
 }
@@ -122,6 +122,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
 
 
 # Default primary key field type
