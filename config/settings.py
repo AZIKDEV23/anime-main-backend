@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-61(6=9##9oqb4%@a6htpctu(2zwmx2yjk=u-#=_54g#x2-pq^9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://anime-main-backend.onrender.com']
 
 
 # Application definition
