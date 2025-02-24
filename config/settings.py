@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +27,7 @@ SECRET_KEY = 'django-insecure-61(6=9##9oqb4%@a6htpctu(2zwmx2yjk=u-#=_54g#x2-pq^9
 DEBUG = True
 
 ALLOWED_HOSTS = ['anime-main-backend.onrender.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -77,10 +79,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'anime_mail_site',
-        'USER': 'anime_mail_site_user',
-        'PASSWORD': 'iMZ6J9AFgR4KctsOIZ8sQ5Wo9esLwUhZ',
-        'HOST': 'dpg-cus4elhopnds7396cmog-a',
+        'NAME': 'anime_main',
+        'USER': 'postgres',
+        'PASSWORD': '1111',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }
@@ -122,6 +124,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 
