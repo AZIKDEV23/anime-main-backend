@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 import os
 
@@ -21,13 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-61(6=9##9oqb4%@a6htpctu(2zwmx2yjk=u-#=_54g#x2-pq^9'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+#'django-insecure-61(6=9##9oqb4%@a6htpctu(2zwmx2yjk=u-#=_54g#x2-pq^9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = ['anime-main-backend.onrender.com']
-# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['anime-main-backend.onrender.com']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -41,6 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base',
 ]
+# postgresql://anime_render_user:HO0EeriW6jJcQbL9EkgqtZ3xxHV40k2C@dpg-cuupfti3esus73abvjb0-a.oregon-postgres.render.com/anime_render
+# postgresql://anime_render_user:HO0EeriW6jJcQbL9EkgqtZ3xxHV40k2C@dpg-cuupfti3esus73abvjb0-a/anime_render
+# PGPASSWORD=HO0EeriW6jJcQbL9EkgqtZ3xxHV40k2C psql -h dpg-cuupfti3esus73abvjb0-a.oregon-postgres.render.com -U anime_render_user anime_render
+
+# senha: HO0EeriW6jJcQbL9EkgqtZ3xxHV40k2C
+# host: dpg-cuupfti3esus73abvjb0-a.oregon-postgres.render.com
+# user: anime_render_user
+# database: anime_render
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,14 +88,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'anime_main',
-        'USER': 'postgres',
-        'PASSWORD': '1111',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3"
     }
 }
+
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse(database_url)
+# "postgresql://anime_render_user:HO0EeriW6jJcQbL9EkgqtZ3xxHV40k2C@dpg-cuupfti3esus73abvjb0-a.oregon-postgres.render.com/anime_render"
 
 
 # Password validation
