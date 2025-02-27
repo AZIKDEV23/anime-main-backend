@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="breadcrumb__links">
-          <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+          <a href="{% url "home" %}"><i class="fa fa-home"></i> Home</a>
           <a href="./categories.html">Categories</a>
           <a href="#">Romance</a>
           <span>Fate Stay Night: Unlimited Blade</span>
@@ -23,13 +23,16 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="anime__video__player">
+          {% if anime.image %}
           <video
             id="player"
             playsinline
             controls
-            data-poster="./videos/anime-watch.jpg"
+            data-poster="{{ anime.image.url}}"
           >
-            <source src="videos/1.mp4" type="video/mp4" />
+          {% endif %}
+          {% if anime.video %}
+            <source src="{{ anime.video.url}}" type="video/mp4" />
             <!-- Captions are optional -->
             <track
               kind="captions"
@@ -38,7 +41,8 @@
               srclang="en"
               default
             />
-          </video>
+            {% endif %}
+            </video>
         </div>
         <div class="anime__details__episodes">
           <div class="section-title">

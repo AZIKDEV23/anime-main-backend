@@ -1,18 +1,34 @@
 from django.shortcuts import render
+from .models import *
+from django.views.generic import TemplateView, ListView, DetailView
 
 # Create your views here.
 
-def home(req):
+class HomePageView(ListView):
+    model = Anime
     template_name = 'pages/home.html'
-    return render(req, template_name)
+    ordering = ['-created_at']
+    context_object_name = 'animes'
 
-def anime_details(req):
+class AnimeDetailPageView(DetailView):
+    model = Anime
     template_name = 'pages/anime_details.html'
-    return render(req, template_name)
+    context_object_name = 'anime'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
 
-def anime_watching(req):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["all_animes"] = Anime.objects.all()
+        return context
+
+class AnimeWatchingPageView(DetailView):
+    model = Anime
     template_name = 'pages/anime-watching.html'
-    return render(req, template_name)
+    context_object_name = 'anime'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
 
 def blog(req):
     template_name = 'pages/blog.html'

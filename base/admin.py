@@ -8,7 +8,7 @@ from .models import *
 
 @admin.register(Anime)
 class AnimeAdmin(admin.ModelAdmin):
-    list_display = ('title', 'release_year', 'rating', 'image', 'video')
+    list_display = ('title', 'release_year', 'rating', 'slug')
 
 admin.site.register(Genre)
 admin.site.register(Review)
