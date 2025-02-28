@@ -22,14 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
-SECRET_KEY = 'django-insecure-61(6=9##9oqb4%@a6htpctu(2zwmx2yjk=u-#=_54g#x2-pq^9'
+# SECRET_KEY = 'django-insecure-61(6=9##9oqb4%@a6htpctu(2zwmx2yjk=u-#=_54g#x2-pq^9'
 # 'django-insecure-61(6=9##9oqb4%@a6htpctu(2zwmx2yjk=u-#=_54g#x2-pq^9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 # DEBUG = True
 
-# ALLOWED_HOSTS = ['anime-main-backend.onrender.com']
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 # ALLOWED_HOSTS = []
 
@@ -45,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base',
 ]
+
 # postgresql://anime_render_user:HO0EeriW6jJcQbL9EkgqtZ3xxHV40k2C@dpg-cuupfti3esus73abvjb0-a.oregon-postgres.render.com/anime_render
 # postgresql://anime_render_user:HO0EeriW6jJcQbL9EkgqtZ3xxHV40k2C@dpg-cuupfti3esus73abvjb0-a/anime_render
 # PGPASSWORD=HO0EeriW6jJcQbL9EkgqtZ3xxHV40k2C psql -h dpg-cuupfti3esus73abvjb0-a.oregon-postgres.render.com -U anime_render_user anime_render
@@ -53,7 +53,6 @@ INSTALLED_APPS = [
 # host: dpg-cuupfti3esus73abvjb0-a.oregon-postgres.render.com
 # user: anime_render_user
 # database: anime_render
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,8 +91,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3"
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "anime_main",
+        'USER': "postgres",
+        'PASSWORD': "1111",
+        'HOST': "localhost",
+        'PORT': "5432"
     }
 }
 
