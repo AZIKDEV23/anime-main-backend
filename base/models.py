@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
-from django.contrib.auth.models import User
+from .forms import *
+from django.conf import settings
 
 class Genre(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -26,9 +27,17 @@ class Anime(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+    
+    def image_tag(self):
+        if self.image:
+            return f'<img src="{self.image.url}" height="325" style="object-fit: cover;" />'
+        return 'No Image Found'
+    
+    image_tag.allow_tags = True
+    image_tag.short_description = 'Image'
 
-class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+class review(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE, related_name='reviews')
     review_text = models.TextField()
     rating = models.PositiveIntegerField()

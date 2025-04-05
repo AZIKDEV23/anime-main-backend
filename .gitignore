@@ -1,3 +1,8 @@
 env/
 db.sqlite3
 media/
+main.py
+1.txt
+input.txt
+output.txt
+main.cpp
